@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+
+    >
+    <EditText
+        android:id="@+id/fullNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorInnerLayoutBackground"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:inputType="text"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Full Name"
+        />
+    <EditText
+        android:id="@+id/usernameTV"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorInnerLayoutBackground"
+        android:textSize="20sp"
+        android:inputType="text"
+        android:gravity="center"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Username"
+        />
+    <EditText
+        android:id="@+id/emailTV"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorInnerLayoutBackground"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:inputType="text"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Email"
+        />
+    <Button
+        android:id="@+id/registrationBtn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorInnerLayoutBackground"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:inputType="text"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Submit"
+        />
+</LinearLayout>
