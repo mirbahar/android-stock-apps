@@ -10,17 +10,25 @@ public class UserRegistration {
     private String username;
     private String email;
 
-    public UserRegistration(int id, String fullName, String username, String email) {
+    public String getPassword() {
+        return password;
+    }
+
+    private String password;
+
+    public UserRegistration(int id, String fullName, String username, String email,String password) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
         this.email = email;
+        this.password = password;
     }
 
-    public UserRegistration(String fullName, String username, String email) {
+    public UserRegistration(String fullName, String username, String email,String password) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
+        this.password = email;
     }
 
     public UserRegistration() {

@@ -42,6 +42,19 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:hint="Email"
         />
+
+    <EditText
+        android:id="@+id/passwordET"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorInnerLayoutBackground"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:hint="Password"
+        />
     <Button
         android:id="@+id/registrationBtn"
         android:layout_width="match_parent"
