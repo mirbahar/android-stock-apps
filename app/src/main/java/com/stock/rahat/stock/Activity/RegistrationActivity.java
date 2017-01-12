@@ -42,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
         String userName = userNameET.getText().toString();
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
-        UserRegistration userRegistration =new UserRegistration(fullName,userName,email,password);
+        UserRegistration userRegistration = new UserRegistration(fullName,userName,email,password);
 
         if  ( (!validation.isValidEmail(email))
                 || (!validation.isValidPassword(password))

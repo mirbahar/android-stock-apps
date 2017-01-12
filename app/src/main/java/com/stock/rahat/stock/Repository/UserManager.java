@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.stock.rahat.stock.Database.DatabaseHelper;
 import com.stock.rahat.stock.Entity.UserRegistration;
 
+import java.util.ArrayList;
+
 /**
  * Created by rahat on 1/12/17.
  */
@@ -17,6 +19,7 @@ public class UserManager {
     Context context;
     DatabaseHelper databaseHelper;
     SQLiteDatabase sqLiteDatabase;
+
 
     public UserManager(Context context) {
 
@@ -39,21 +42,35 @@ public class UserManager {
 
         return insertedRow;
     }
-    public Boolean userLogin(UserRegistration userRegistration){
+    public ArrayList<String> userLogin(UserRegistration userRegistration){
+
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
+        ArrayList<String>usersInfo = new ArrayList<>();
 
 
-        String selectQuery="select * "+" from "+DatabaseHelper.USER_TABLE+" where";
+        String[] whereArgs = new String[] { String.valueOf(userRegistration.getUsername()),String.valueOf(userRegistration.getPassword()) };
 
-        sqLiteDatabase=databaseHelper.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery(selectQuery,null);
+        String selectQuery =("SELECT "+DatabaseHelper.USER_COLUMN_USERNAME+" , "+DatabaseHelper.USER_COLUMN_PASSWORD+" FROM " + DatabaseHelper.USER_TABLE +
+                            " WHERE "+ DatabaseHelper.USER_COLUMN_USERNAME+" = ?  and "+
+                            DatabaseHelper.USER_COLUMN_PASSWORD+" = ? ,"+whereArgs );
+
+
+        sqLiteDatabase = databaseHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,null);
 
         if(cursor.moveToFirst()){
 
-           return true;
+
+            String userName = cursor.getString(0);
+            String password = cursor.getString(1);
+            usersInfo.add(userName);
+            usersInfo.add(password);
+            return usersInfo;
 
         } else {
-
-            return false;
+            usersInfo.add("");
+            usersInfo.add("");
+           return usersInfo;
         }
 
     }

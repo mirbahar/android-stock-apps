@@ -28,7 +28,12 @@ public class UserRegistration {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
-        this.password = email;
+        this.password = password;
+    }
+    public UserRegistration(String username,String password) {
+
+        this.username = username;
+        this.password = password;
     }
 
     public UserRegistration() {
