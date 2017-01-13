@@ -57,12 +57,12 @@ public class LoginActivity extends AppCompatActivity {
 
             if (userManager.userLogin(username,password))
             {
-                Toast.makeText(this,String.valueOf("success"), Toast.LENGTH_SHORT).show();
-                /*Intent i = new Intent(loginpage.this,welcome.class);
-                startActivity(i);*/
+                Toast.makeText(this,String.valueOf("login Successfully"), Toast.LENGTH_SHORT).show();
+
+                Intent homePageActivity = new Intent(LoginActivity.this,HomeActivity.class);
+                startActivity(homePageActivity);
 
             } else {
-                //wrong password
                  logInTryCount = logInTryCount+1;
                 Toast.makeText(this,String.valueOf(logInTryCount), Toast.LENGTH_SHORT).show();
 
