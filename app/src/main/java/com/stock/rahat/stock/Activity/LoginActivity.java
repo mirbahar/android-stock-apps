@@ -19,6 +19,8 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     UserManager userManager;
     Validation validation = new Validation();
+
+    public int logInTryCount = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view){
+
              String username = usernameET.getText().toString();
              String password = passwordET.getText().toString();
 
@@ -60,7 +63,16 @@ public class LoginActivity extends AppCompatActivity {
 
             } else {
                 //wrong password
-                passwordET.setError("password dose not match");
+                 logInTryCount = logInTryCount+1;
+                Toast.makeText(this,String.valueOf(logInTryCount), Toast.LENGTH_SHORT).show();
+
+                if (logInTryCount< 3){
+                    passwordET.setError("password dose not match");
+                } else {
+                    passwordET.setError("already try to 3 times ");
+
+                }
+
             }
         }
 
