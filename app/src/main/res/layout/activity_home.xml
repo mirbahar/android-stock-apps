@@ -13,7 +13,7 @@
     tools:context="com.stock.rahat.stock.Activity.HomeActivity">
     <Button
         android:background="@drawable/stock"
-        android:id="@+id/productList"
+        android:id="@+id/productListBtn"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -25,7 +25,7 @@
         />
     <Button
         android:background="@drawable/sell"
-        android:id="@+id/productSellList"
+        android:id="@+id/productSellListBtn"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -37,12 +37,13 @@
         />
     <Button
         android:background="@drawable/use"
-        android:id="@+id/userList"
+        android:id="@+id/userListBtn"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:hint="User List"
         android:textStyle="bold"
+
         android:textSize="30sp"
         android:layout_marginBottom="3dp"
         android:gravity="center"
@@ -50,7 +51,7 @@
         />
     <Button
         android:background="@drawable/setting"
-        android:id="@+id/accountSetting"
+        android:id="@+id/accountSettingBtn"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"

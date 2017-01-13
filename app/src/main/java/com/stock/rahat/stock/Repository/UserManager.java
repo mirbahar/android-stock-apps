@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.stock.rahat.stock.Database.DatabaseHelper;
 import com.stock.rahat.stock.Entity.UserRegistration;
 
+import java.util.ArrayList;
+
 /**
  * Created by rahat on 1/12/17.
  */
@@ -17,7 +19,7 @@ public class UserManager {
     Context context;
     DatabaseHelper databaseHelper;
     SQLiteDatabase sqLiteDatabase;
-
+    UserManager userManager;
 
     public UserManager(Context context) {
 
@@ -50,6 +52,28 @@ public class UserManager {
         if (cursor.getCount()>0)
             return true;
         return false;
+    }
+
+    public ArrayList<UserRegistration> getAllUsers(){
+
+        ArrayList<UserRegistration>allUsers=new ArrayList<>();
+
+        String selectQuery="select * from "+DatabaseHelper.USER_TABLE;
+
+        sqLiteDatabase=databaseHelper.getReadableDatabase();
+        Cursor cursor=sqLiteDatabase.rawQuery(selectQuery,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ID));
+                String fullName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_FULL_NAME));
+                String username = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME));
+                String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_FULL_EMAIL));
+                UserRegistration userRegistration = new UserRegistration(id,fullName,username,email);
+                allUsers.add(userRegistration);
+
+            }while (cursor.moveToNext());
+        }
+        return allUsers;
     }
 
 }

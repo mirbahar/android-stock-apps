@@ -35,6 +35,12 @@ public class UserRegistration {
         this.username = username;
         this.password = password;
     }
+    public UserRegistration(int id, String fullName, String username, String email) {
+        this.id = id;
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+    }
 
     public UserRegistration() {
 
