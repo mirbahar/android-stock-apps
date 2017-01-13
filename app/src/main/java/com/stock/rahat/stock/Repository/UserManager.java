@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.stock.rahat.stock.Database.DatabaseHelper;
 import com.stock.rahat.stock.Entity.UserRegistration;
 
-import java.util.ArrayList;
-
 /**
  * Created by rahat on 1/12/17.
  */
@@ -42,39 +40,16 @@ public class UserManager {
 
         return insertedRow;
     }
-    public ArrayList<String> userLogin(UserRegistration userRegistration){
 
-        sqLiteDatabase = databaseHelper.getWritableDatabase();
-        ArrayList<String>usersInfo = new ArrayList<>();
-
-
-        String[] whereArgs = new String[] { String.valueOf(userRegistration.getUsername()),String.valueOf(userRegistration.getPassword()) };
-
-        String selectQuery =("SELECT "+DatabaseHelper.USER_COLUMN_USERNAME+" , "+DatabaseHelper.USER_COLUMN_PASSWORD+" FROM " + DatabaseHelper.USER_TABLE +
-                            " WHERE "+ DatabaseHelper.USER_COLUMN_USERNAME+" = ?  and "+
-                            DatabaseHelper.USER_COLUMN_PASSWORD+" = ? ,"+whereArgs );
-
-
+    public boolean userLogin(String username, String password){
         sqLiteDatabase = databaseHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,null);
 
-        if(cursor.moveToFirst()){
-
-
-            String userName = cursor.getString(0);
-            String password = cursor.getString(1);
-            usersInfo.add(userName);
-            usersInfo.add(password);
-            return usersInfo;
-
-        } else {
-            usersInfo.add("");
-            usersInfo.add("");
-           return usersInfo;
-        }
-
+        Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(
+                "SELECT * FROM " + DatabaseHelper.USER_TABLE + " WHERE "
+                        + DatabaseHelper.USER_COLUMN_USERNAME + "='" + username +"'AND "+DatabaseHelper.USER_COLUMN_PASSWORD+"='"+password+"'" ,  null);
+        if (cursor.getCount()>0)
+            return true;
+        return false;
     }
-
-
 
 }
