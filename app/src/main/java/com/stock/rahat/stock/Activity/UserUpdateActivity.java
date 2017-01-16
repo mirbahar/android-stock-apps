@@ -13,52 +13,50 @@ import com.stock.rahat.stock.R;
 import com.stock.rahat.stock.Repository.UserManager;
 import com.stock.rahat.stock.libraries.Validation;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class UserUpdateActivity extends AppCompatActivity {
+
 
     EditText fullNameET;
     EditText userNameET;
     EditText emailET;
-    EditText passwordET;
     Button button;
     UserManager userManager;
-     int userId ;
+    UserRegistration userRegistration;
 
     Validation validation = new Validation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_user_update);
 
         userManager  = new UserManager(this);
 
         fullNameET = (EditText) findViewById(R.id.fullNameET);
         userNameET = (EditText) findViewById(R.id.usernameET);
         emailET = (EditText) findViewById(R.id.emailET);
-        passwordET = (EditText) findViewById(R.id.passwordET);
         button = (Button) findViewById(R.id.registrationBtn);
+
+        userRegistration = (UserRegistration) getIntent().getSerializableExtra("user");
+
+            fullNameET.setText(userRegistration.getFullName());
+            userNameET.setText(userRegistration.getUsername());
+            emailET.setText(userRegistration.getEmail());
     }
 
-    public void save(View view) {
+    public void update(View view) {
 
         String fullName = fullNameET.getText().toString();
         String userName = userNameET.getText().toString();
         String email = emailET.getText().toString();
-        String password = passwordET.getText().toString();
 
-        UserRegistration userRegistration = new UserRegistration(fullName,userName,email,password);
+        UserRegistration updateUserInfo = new UserRegistration(userRegistration.getId(),fullName,userName,email);
 
-        if  ( (!validation.isValidEmail(email))
-                || (!validation.isValidPassword(password))
-                || (!validation.isFullName(fullName))
-                || (!validation.isUserName(userName))
-            )
+        if  ( (!validation.isValidEmail(email)) || (!validation.isFullName(fullName))|| (!validation.isUserName(userName))
+                )
         {
             if((!validation.isValidEmail(email))){
                 emailET.setError("Invalid Email");
-            }
-            if ((!validation.isValidPassword(password))){
-                passwordET.setError("password minimum 6 digit");
             }
             if ((!validation.isFullName(fullName))){
                 fullNameET.setError("should not be blank name");
@@ -67,18 +65,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 userNameET.setError("username not be blank");
             }
         } else {
-                long insertedResult = userManager.addUser(userRegistration);
-
-                if(insertedResult > 0){
-                    Toast.makeText(this,String.valueOf(insertedResult), Toast.LENGTH_SHORT).show();
+                long updateResult = userManager.updateUser(updateUserInfo);
+                if(updateResult > 0){
+                    Toast.makeText(this,String.valueOf(updateResult), Toast.LENGTH_SHORT).show();
                 }
-
-            Intent intent = new Intent(RegistrationActivity.this,UserListActivity.class);
+            Intent intent = new Intent(UserUpdateActivity.this,UserListActivity.class);
             startActivity(intent);
         }
 
-
-
     }
-
 }

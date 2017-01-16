@@ -20,6 +20,7 @@ public class UserManager {
     DatabaseHelper databaseHelper;
     SQLiteDatabase sqLiteDatabase;
     UserManager userManager;
+    UserRegistration userRegistration;
 
     public UserManager(Context context) {
 
@@ -74,6 +75,42 @@ public class UserManager {
             }while (cursor.moveToNext());
         }
         return allUsers;
+    }
+
+    public UserRegistration getSingleUserByID(int id){
+
+        sqLiteDatabase = databaseHelper.getReadableDatabase();
+        String selectQuery="select * from "+DatabaseHelper.USER_TABLE+" where "+DatabaseHelper.USER_COLUMN_ID+" = "+id;
+
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,null);
+        if(cursor.moveToFirst()){
+            String fullName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_FULL_NAME));
+            String username = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME));
+            String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_FULL_EMAIL));
+            userRegistration = new UserRegistration(id,fullName,username,email);
+        }
+        return userRegistration;
+    }
+
+    public long updateUser(UserRegistration userRegistration){
+
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.USER_COLUMN_FULL_EMAIL,userRegistration.getFullName());
+        contentValues.put(DatabaseHelper.USER_COLUMN_USERNAME,userRegistration.getUsername());
+        contentValues.put(DatabaseHelper.USER_COLUMN_FULL_EMAIL,userRegistration.getEmail());
+
+        long updateRow = sqLiteDatabase.update(DatabaseHelper.USER_TABLE,contentValues,DatabaseHelper.USER_COLUMN_ID+" =? ",
+                        new String[]{String.valueOf(userRegistration.getId())});
+        sqLiteDatabase.close();
+        return updateRow;
+    }
+    public void deleteUser(int id){
+
+         sqLiteDatabase = databaseHelper.getWritableDatabase();
+         sqLiteDatabase.delete(DatabaseHelper.USER_TABLE, DatabaseHelper.USER_COLUMN_ID+"=?", new String[]{String.valueOf(id)});
+         sqLiteDatabase.close();
     }
 
 }

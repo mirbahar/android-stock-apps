@@ -1,10 +1,16 @@
 package com.stock.rahat.stock.Entity;
 
+import java.io.Serializable;
+
 /**
  * Created by rahat on 1/12/17.
  */
 
-public class UserRegistration {
+public class UserRegistration implements Serializable {
+    public int getId() {
+        return this.id;
+    }
+
     private int id;
     private String fullName;
     private String username;

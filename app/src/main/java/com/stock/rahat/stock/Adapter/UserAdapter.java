@@ -1,15 +1,21 @@
 package com.stock.rahat.stock.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.stock.rahat.stock.Activity.UserListActivity;
+import com.stock.rahat.stock.Activity.UserUpdateActivity;
 import com.stock.rahat.stock.Entity.UserRegistration;
 import com.stock.rahat.stock.R;
+import com.stock.rahat.stock.Repository.UserManager;
 
 import java.util.ArrayList;
 
@@ -21,6 +27,7 @@ public class UserAdapter extends ArrayAdapter<UserRegistration> {
 
     ArrayList<UserRegistration> userRegistrations;
     Context context;
+    UserManager userManager;
     public UserAdapter(Context context, ArrayList<UserRegistration> users) {
 
         super(context, R.layout.user_row, users);
@@ -32,18 +39,40 @@ public class UserAdapter extends ArrayAdapter<UserRegistration> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        UserRegistration userRegistration = userRegistrations.get(position);
+
+       final  UserRegistration userRegistration = userRegistrations.get(position);
 
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_row,parent,false);
 
-//        TextView fullNameTV = (TextView) convertView.findViewById(R.id.fullNameTV);
-        TextView idTv = (TextView) convertView.findViewById(R.id.usernameListTV);
-   //     TextView emailTV = (TextView) convertView.findViewById(R.id.emailTV);
+        TextView userNameTV = (TextView) convertView.findViewById(R.id.usernameListTV);
+        userNameTV.setText(userRegistration.getUsername());
 
-//        fullNameTV.setText(userRegistration.getFullName());
-        idTv.setText(userRegistration.getUsername());
-   //     emailTV.setText(userRegistration.getEmail());
+
+        Button updateUser = (Button) convertView.findViewById(R.id.userEditBtn);
+        Button deleteUser = (Button) convertView.findViewById(R.id.userDeleteBtn);
+
+        updateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context.getApplicationContext(), UserUpdateActivity.class);
+                intent.putExtra("user", userRegistration);
+                context.startActivity(intent);
+            }
+        });
+        deleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                userManager.deleteUser(userRegistration.getId());
+                Toast.makeText(context.getApplicationContext(), "User successfully deleted ", Toast.LENGTH_LONG).show();
+                Intent userDelete = new Intent(context.getApplicationContext(), UserListActivity.class);
+                context.startActivity(userDelete);
+            }
+        });
 
         return convertView;
     }
+
+
 }

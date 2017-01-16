@@ -24,12 +24,14 @@
             android:layout_gravity="center"
             android:layout_marginRight="3dp"
             />
+
         <Button
             android:id="@+id/userEditBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Edit"
+            android:focusable="false"
             android:gravity="center"
             android:textStyle="bold"
             android:layout_marginRight="3dp"
@@ -41,16 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Delete"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            />
-        <Button
-            android:id="@+id/userDetailBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Detail"
             android:gravity="center"
             android:textStyle="bold"
             android:layout_gravity="center"
