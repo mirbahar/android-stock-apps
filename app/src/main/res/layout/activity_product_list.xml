@@ -10,10 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.stock.rahat.stock.Activity.ProductListActivity">
-
+<Button
+    android:id="@+id/insertProductBtn"
+    android:background="@color/colorInnerLayoutBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Create New Product"
+    android:onClick="insertProduct"
+    android:textSize="30sp"
+    android:layout_margin="3dp"
+    />
     <ListView
         android:background="@color/colorBackgroundMain"
-        android:id="@+id/productList"
+        android:id="@+id/productListLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"

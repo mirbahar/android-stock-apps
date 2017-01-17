@@ -66,7 +66,8 @@ public class UserUpdateActivity extends AppCompatActivity {
             }
         } else {
                 long updateResult = userManager.updateUser(updateUserInfo);
-                if(updateResult > 0){
+
+                if( updateResult > 0){
                     Toast.makeText(this,String.valueOf(updateResult), Toast.LENGTH_SHORT).show();
                 }
             Intent intent = new Intent(UserUpdateActivity.this,UserListActivity.class);

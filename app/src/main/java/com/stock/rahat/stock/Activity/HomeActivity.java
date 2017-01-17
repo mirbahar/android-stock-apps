@@ -8,14 +8,21 @@ import android.widget.Button;
 
 import com.stock.rahat.stock.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button userListBtn;
+   Button productListBtn;
+    Button createNewProductBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         userListBtn = (Button) findViewById(R.id.userListBtn);
+        productListBtn = (Button) findViewById(R.id.productListBtn);
+
+        userListBtn.setOnClickListener(this);
+        productListBtn.setOnClickListener(this);
 
         userListBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,4 +34,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.productListBtn:
+                Intent productListActivity = new Intent(HomeActivity.this,ProductListActivity.class);
+                startActivity(productListActivity);
+                break;
+
+        }
+
+    }
 }

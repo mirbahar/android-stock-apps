@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Stock</string>
+    <string name="enter_product_name">Enter Product Name</string>
+    <string name="product_type">Product Type</string>
+    <string name="product_qty">Product Qty</string>
+    <string name="product_brand">Product Brand</string>
 </resources>

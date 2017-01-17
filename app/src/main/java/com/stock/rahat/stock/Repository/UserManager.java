@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import com.stock.rahat.stock.Database.DatabaseHelper;
 import com.stock.rahat.stock.Entity.UserRegistration;
@@ -21,7 +20,7 @@ public class UserManager {
     Context context;
     DatabaseHelper databaseHelper;
     SQLiteDatabase sqLiteDatabase;
-    UserManager userManager;
+
     UserRegistration userRegistration;
 
     public UserManager(Context context) {

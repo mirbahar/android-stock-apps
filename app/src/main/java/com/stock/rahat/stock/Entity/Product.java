@@ -1,18 +1,23 @@
 package com.stock.rahat.stock.Entity;
 
+import java.io.Serializable;
+
 /**
  * Created by rahat on 1/17/17.
  */
 
-public class Product {
+public class Product implements Serializable {
 
+    public int getId() {
+        return this.id;
+    }
     private int id;
     private String productName;
     private String productType;
-    private double productQty;
+    private String productQty;
     private String productBrand;
 
-    public Product(int id, String productName, String productType, double productQty, String productBrand) {
+    public Product(int id, String productName, String productType, String productQty, String productBrand) {
 
 
         this.productName = productName;
@@ -20,23 +25,21 @@ public class Product {
         this.productQty = productQty;
         this.productBrand = productBrand;
     }
-    public Product(String productName, String productType, double productQty, String productBrand) {
+    public Product(String productName, String productType, String productQty, String productBrand) {
 
         this.productName = productName;
         this.productType = productType;
         this.productQty = productQty;
         this.productBrand = productBrand;
     }
-    public Product(int id, double productQty) {
+    public Product(int id, String productQty) {
 
         this.id = id;
         this.productQty = productQty;
 
     }
 
-    public int getId() {
-        return id;
-    }
+
 
     public String getProductName() {
         return productName;
@@ -46,7 +49,7 @@ public class Product {
         return productType;
     }
 
-    public double getProductQty() {
+    public String getProductQty() {
         return productQty;
     }
 

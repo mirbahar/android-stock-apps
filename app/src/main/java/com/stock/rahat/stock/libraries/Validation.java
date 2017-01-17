@@ -27,7 +27,24 @@ public class Validation {
         }
         return false;
     }
-    public boolean isFullName(String fullname) {
+    public boolean isFullName(String string) {
+        if (string.matches("")) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    public boolean isUserName(String string) {
+        if (string.matches("")) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public boolean pName(String fullname) {
         if (fullname.matches("")) {
             return false;
         } else {
@@ -35,8 +52,24 @@ public class Validation {
         }
 
     }
-    public boolean isUserName(String username) {
-        if (username.matches("")) {
+    public boolean pType(String string) {
+        if (string.matches("")) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    public boolean pBrand(String string) {
+        if (string.matches("")) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    public boolean pQty(String string) {
+        if (string.matches("")) {
             return false;
         } else {
             return true;
