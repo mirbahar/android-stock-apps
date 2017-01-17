@@ -3,7 +3,9 @@ package com.stock.rahat.stock.Repository;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.stock.rahat.stock.Database.DatabaseHelper;
 import com.stock.rahat.stock.Entity.UserRegistration;
@@ -25,6 +27,7 @@ public class UserManager {
     public UserManager(Context context) {
 
         databaseHelper=new DatabaseHelper(context);
+        this.context = context;
     }
 
     public long addUser(UserRegistration userRegistration){
@@ -44,13 +47,19 @@ public class UserManager {
         return insertedRow;
     }
 
+    public UserManager open() throws SQLException {
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
+        return this;
+    }
+
     public boolean userLogin(String username, String password){
+
         sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(
                 "SELECT * FROM " + DatabaseHelper.USER_TABLE + " WHERE "
                         + DatabaseHelper.USER_COLUMN_USERNAME + "='" + username +"'AND "+DatabaseHelper.USER_COLUMN_PASSWORD+"='"+password+"'" ,  null);
-        if (cursor.getCount()>0)
+        if (cursor.getCount() > 0)
             return true;
         return false;
     }
@@ -92,7 +101,7 @@ public class UserManager {
         return userRegistration;
     }
 
-    public long updateUser(UserRegistration userRegistration){
+    public long updateUser(UserRegistration userRegistration) {
 
         sqLiteDatabase = databaseHelper.getWritableDatabase();
 
@@ -106,10 +115,10 @@ public class UserManager {
         sqLiteDatabase.close();
         return updateRow;
     }
-    public void deleteUser(int id){
+    public void deleteUser(UserRegistration userRegistration){
 
          sqLiteDatabase = databaseHelper.getWritableDatabase();
-         sqLiteDatabase.delete(DatabaseHelper.USER_TABLE, DatabaseHelper.USER_COLUMN_ID+"=?", new String[]{String.valueOf(id)});
+         sqLiteDatabase.delete(DatabaseHelper.USER_TABLE, DatabaseHelper.USER_COLUMN_ID+"=?", new String[]{String.valueOf(userRegistration.getId())});
          sqLiteDatabase.close();
     }
 

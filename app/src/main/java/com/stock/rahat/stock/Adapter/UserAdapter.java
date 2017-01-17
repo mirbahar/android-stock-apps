@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.stock.rahat.stock.Activity.UserListActivity;
 import com.stock.rahat.stock.Activity.UserUpdateActivity;
+import com.stock.rahat.stock.Database.DatabaseHelper;
 import com.stock.rahat.stock.Entity.UserRegistration;
 import com.stock.rahat.stock.R;
 import com.stock.rahat.stock.Repository.UserManager;
@@ -28,6 +29,7 @@ public class UserAdapter extends ArrayAdapter<UserRegistration> {
     ArrayList<UserRegistration> userRegistrations;
     Context context;
     UserManager userManager;
+    DatabaseHelper databsehelper;
     public UserAdapter(Context context, ArrayList<UserRegistration> users) {
 
         super(context, R.layout.user_row, users);
@@ -43,6 +45,10 @@ public class UserAdapter extends ArrayAdapter<UserRegistration> {
        final  UserRegistration userRegistration = userRegistrations.get(position);
 
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_row,parent,false);
+
+        userManager  = new UserManager(context);
+
+        userManager = userManager.open();
 
         TextView userNameTV = (TextView) convertView.findViewById(R.id.usernameListTV);
         userNameTV.setText(userRegistration.getUsername());
@@ -60,12 +66,12 @@ public class UserAdapter extends ArrayAdapter<UserRegistration> {
                 context.startActivity(intent);
             }
         });
+
         deleteUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                userManager.deleteUser(userRegistration.getId());
-                Toast.makeText(context.getApplicationContext(), "User successfully deleted ", Toast.LENGTH_LONG).show();
+                userManager.deleteUser(userRegistration);
                 Intent userDelete = new Intent(context.getApplicationContext(), UserListActivity.class);
                 context.startActivity(userDelete);
             }

@@ -54,10 +54,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         } else {
 
-
             if (userManager.userLogin(username,password))
             {
                 Toast.makeText(this,String.valueOf("login Successfully"), Toast.LENGTH_SHORT).show();
+
+
 
                 Intent homePageActivity = new Intent(LoginActivity.this,HomeActivity.class);
                 startActivity(homePageActivity);
