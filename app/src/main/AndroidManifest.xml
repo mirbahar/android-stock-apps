@@ -22,7 +22,8 @@
         <activity android:name=".Activity.ProductListActivity" />
         <activity android:name=".Activity.ProductInsertActivity" />
         <activity android:name=".Activity.ProductUpdateActivity" />
-        <activity android:name=".Activity.ProductAddQtyActivity"></activity>
+        <activity android:name=".Activity.ProductAddQtyActivity" />
+        <activity android:name=".Activity.SaleActivity"></activity>
     </application>
 
 </manifest>
