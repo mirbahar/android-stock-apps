@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.stock.rahat.stock.Activity.ProductAddQtyActivity;
 import com.stock.rahat.stock.Activity.ProductListActivity;
@@ -77,6 +78,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             public void onClick(View v) {
 
                 productManager.deleteProduct(product);
+                Toast.makeText(context, "Product Delete Successfully", Toast.LENGTH_SHORT).show();
                 Intent productDelete = new Intent(context.getApplicationContext(), ProductListActivity.class);
                 context.startActivity(productDelete);
             }

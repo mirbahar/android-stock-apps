@@ -42,7 +42,7 @@ public class ProductAddQtyActivity extends AppCompatActivity {
             addQtyET.setError("Add Qty");
         }
 
-        product = productManager.getSingleProductByID(product.getId());
+        Toast.makeText(this, String.valueOf(product.getProductQty()), Toast.LENGTH_SHORT).show();
         double fromDb = Double.parseDouble( product.getProductQty());
         double AddQty = Double.parseDouble( pQty);
 
@@ -54,7 +54,7 @@ public class ProductAddQtyActivity extends AppCompatActivity {
 
 
         if( updateResult > 0){
-            Toast.makeText(this,String.valueOf(updateResult), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Product Qty Add Successfully", Toast.LENGTH_SHORT).show();
         }
         Intent intent = new Intent(ProductAddQtyActivity.this,ProductListActivity.class);
         startActivity(intent);
