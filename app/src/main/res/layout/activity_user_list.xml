@@ -11,6 +11,16 @@
     android:orientation="vertical"
     tools:context="com.stock.rahat.stock.Activity.UserListActivity">
 
+    <Button
+        android:id="@+id/insertUserBtn"
+        android:background="@color/colorInnerLayoutBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Create New User"
+        android:onClick="insertUser"
+        android:textSize="30sp"
+        android:layout_margin="3dp"
+        />
     <ListView
         android:background="@color/colorBackgroundMain"
         android:id="@+id/userLV"

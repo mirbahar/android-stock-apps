@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class UserListActivity extends AppCompatActivity {
 
     ListView userLV;
+    Button insertUserBtn;
 
     ArrayList<UserRegistration>allUsers;
     UserAdapter userAdapter;
@@ -28,7 +30,7 @@ public class UserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_list);
 
         userLV = (ListView) findViewById(R.id.userLV);
-
+        insertUserBtn = (Button) findViewById(R.id.insertUserBtn);
 
         userManager = new UserManager(this);
         allUsers = userManager.getAllUsers();
@@ -47,6 +49,17 @@ public class UserListActivity extends AppCompatActivity {
             }
         });
 
+        insertUserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent insertProduct = new Intent(UserListActivity.this,RegistrationActivity.class);
+                startActivity(insertProduct);
+
+            }
+        });
+
     }
+
 
 }
