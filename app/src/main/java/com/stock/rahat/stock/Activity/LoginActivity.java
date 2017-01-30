@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void onClick(View view) {
+    public void userCreate(View view) {
         Intent intentRegistrationPage = new Intent(LoginActivity.this,RegistrationActivity.class);
         startActivity(intentRegistrationPage);
     }
