@@ -2,7 +2,6 @@ package com.stock.rahat.stock.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,10 +14,10 @@ import com.stock.rahat.stock.Repository.ProductManager;
 
 import java.util.ArrayList;
 
-public class ProductListActivity extends AppCompatActivity {
+public class ProductListActivity extends BaseActivity {
 
     ListView productListView;
-    Button createProductBtn;
+   Button createProductBtn;
     ArrayList<Product>allProducts;
 
     ProductAdapter productAdapter;
@@ -30,7 +29,8 @@ public class ProductListActivity extends AppCompatActivity {
 
         productListView = (ListView) findViewById(R.id.productListLV);
         createProductBtn = (Button) findViewById(R.id.insertProductBtn);
-
+        // get Shared preference data
+     //   SharedPreferences saveUserData = getSharedPreferences("UserInfo",MODE_PRIVATE );
 
         productManager = new ProductManager(this);
         allProducts = productManager.getAllProducts();

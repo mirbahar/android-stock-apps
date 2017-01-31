@@ -9,10 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.stock.rahat.stock.Activity.ProductAddQtyActivity;
-import com.stock.rahat.stock.Activity.ProductListActivity;
 import com.stock.rahat.stock.Activity.ProductUpdateActivity;
 import com.stock.rahat.stock.Entity.Product;
 import com.stock.rahat.stock.R;
@@ -59,8 +56,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         productQtyTV.setText(  product.getProductQty());
 
         Button updateProduct = (Button) convertView.findViewById(R.id.ProductEditBtn);
-        Button deleteProduct = (Button) convertView.findViewById(R.id.ProductDeleteBtn);
-        Button addQtyProduct = (Button) convertView.findViewById(R.id.ProductAddQtyBtn);
+//        Button deleteProduct = (Button) convertView.findViewById(R.id.ProductDeleteBtn);
+//        Button addQtyProduct = (Button) convertView.findViewById(R.id.ProductAddQtyBtn);
 
         updateProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +69,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 context.startActivity(intent);
             }
         });
-
+/*
         deleteProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +90,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 context.startActivity(intent);
 
             }
-        });
+        });*/
 
         return convertView;
     }

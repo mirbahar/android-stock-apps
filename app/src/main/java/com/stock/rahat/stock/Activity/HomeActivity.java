@@ -1,14 +1,14 @@
 package com.stock.rahat.stock.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.stock.rahat.stock.R;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     Button userListBtn;
    Button productListBtn;
@@ -16,7 +16,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+
+        SharedPreferences saveUserData = getSharedPreferences("UserInfo",MODE_PRIVATE );
+        int userId = saveUserData.getInt("userId",0);
+        if(userId == 0){
+           Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+            startActivity(intent);
+        } else {
+            setContentView(R.layout.activity_home);
+        }
+
 
         userListBtn = (Button) findViewById(R.id.userListBtn);
         productListBtn = (Button) findViewById(R.id.productListBtn);

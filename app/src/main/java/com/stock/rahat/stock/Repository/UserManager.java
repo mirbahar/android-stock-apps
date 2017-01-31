@@ -85,17 +85,16 @@ public class UserManager {
         return allUsers;
     }
 
-    public UserRegistration getSingleUserByID(int id){
+    public UserRegistration getLogedInUserData(String username){
 
         sqLiteDatabase = databaseHelper.getReadableDatabase();
-        String selectQuery="select * from "+DatabaseHelper.USER_TABLE+" where "+DatabaseHelper.USER_COLUMN_ID+" = "+id;
+        String selectQuery="select userId,username from "+DatabaseHelper.USER_TABLE+" where "+DatabaseHelper.USER_COLUMN_USERNAME+" =?";
 
-        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,null);
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,new String[]{username});
         if(cursor.moveToFirst()){
-            String fullName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_FULL_NAME));
-            String username = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME));
-            String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_FULL_EMAIL));
-            userRegistration = new UserRegistration(id,fullName,username,email);
+            int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_ID));
+            String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_COLUMN_USERNAME));
+            userRegistration = new UserRegistration(id,name);
         }
         return userRegistration;
     }
@@ -120,5 +119,23 @@ public class UserManager {
          sqLiteDatabase.delete(DatabaseHelper.USER_TABLE, DatabaseHelper.USER_COLUMN_ID+"=?", new String[]{String.valueOf(userRegistration.getId())});
          sqLiteDatabase.close();
     }
+
+    public boolean isUserExist(String username) {
+
+        sqLiteDatabase = databaseHelper.getReadableDatabase();
+
+        sqLiteDatabase = databaseHelper.getReadableDatabase();
+        String selectQuery ="select * from "+DatabaseHelper.USER_TABLE+" where "+DatabaseHelper.USER_COLUMN_USERNAME+" =?";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,new String[]{username});
+
+        if (cursor.getCount() > 0){
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
+
 
 }

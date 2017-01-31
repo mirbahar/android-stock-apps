@@ -15,6 +15,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".Activity.RegistrationActivity" />
         <activity android:name=".Activity.HomeActivity">
@@ -22,7 +23,10 @@
         </activity>
         <activity android:name=".Activity.UserListActivity" />
         <activity android:name=".Activity.UserUpdateActivity" />
-        <activity android:name=".Activity.ProductListActivity" />
+        <activity android:name=".Activity.ProductListActivity">
+
+
+        </activity>
         <activity android:name=".Activity.ProductInsertActivity" />
         <activity android:name=".Activity.ProductUpdateActivity" />
         <activity android:name=".Activity.ProductAddQtyActivity" />

@@ -1,6 +1,7 @@
 package com.stock.rahat.stock.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,9 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.stock.rahat.stock.Entity.UserRegistration;
 import com.stock.rahat.stock.R;
 import com.stock.rahat.stock.Repository.UserManager;
 import com.stock.rahat.stock.libraries.Validation;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intentRegistrationPage);
     }
 
+
     public void login(View view){
 
              String username = usernameET.getText().toString();
@@ -56,8 +61,18 @@ public class LoginActivity extends AppCompatActivity {
 
             if (userManager.userLogin(username,password))
             {
-                Toast.makeText(this,String.valueOf("login Successfully"), Toast.LENGTH_SHORT).show();
+               ArrayList<UserRegistration>userInfo =  userManager.getLogedInUserData(username);
+                UserRegistration userRegistration = (UserRegistration) userInfo;
 
+                SharedPreferences saveUserData = getSharedPreferences("UserInfo",MODE_PRIVATE );
+
+                SharedPreferences.Editor editor = saveUserData.edit();
+                editor.putString("username",userRegistration.getUsername());
+                editor.putInt("userId", userRegistration.getId());
+                editor.apply();
+                editor.commit();
+
+                Toast.makeText(this,String.valueOf("Welcome To Our Apps"), Toast.LENGTH_SHORT).show();
 
 
                 Intent homePageActivity = new Intent(LoginActivity.this,HomeActivity.class);

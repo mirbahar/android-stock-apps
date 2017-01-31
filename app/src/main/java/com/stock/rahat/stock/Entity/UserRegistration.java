@@ -1,12 +1,13 @@
 package com.stock.rahat.stock.Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by rahat on 1/12/17.
  */
 
-public class UserRegistration implements Serializable {
+public class UserRegistration extends ArrayList<UserRegistration> implements Serializable {
     public int getId() {
         return this.id;
     }
@@ -40,6 +41,11 @@ public class UserRegistration implements Serializable {
 
         this.username = username;
         this.password = password;
+    }
+    public UserRegistration(int id , String username) {
+
+        this.id = id;
+        this.username = username;
     }
     public UserRegistration(int id, String fullName, String username, String email) {
         this.id = id;

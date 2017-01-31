@@ -48,6 +48,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
         UserRegistration userRegistration = new UserRegistration(fullName,userName,email,password);
 
+        if(userManager.isUserExist(userName)){
+            userNameET.setError("Username is already exist");
+            return;
+        }
+
         if  ( (!validation.isValidEmail(email))
                 || (!validation.isValidPassword(password))
                 || (!validation.isFullName(fullName))
