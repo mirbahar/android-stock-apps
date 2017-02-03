@@ -1,6 +1,7 @@
 package com.stock.rahat.stock.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -44,7 +45,14 @@ public class ProductInsertActivity extends AppCompatActivity {
         String pQty = productQtyET.getText().toString();
         String pBrand = productBrandET.getText().toString();
 
-        Product product = new Product(pName,pType,pQty,pBrand);
+        SharedPreferences saveUserData = getSharedPreferences("UserInfo",MODE_PRIVATE );
+        int userId = saveUserData.getInt("userId",0);
+        SharedPreferences.Editor editor = saveUserData.edit();
+        editor.putInt("userId", userId);
+        editor.apply();
+        editor.commit();
+
+        Product product = new Product(pName,pType,pQty,pBrand,userId);
 
         if  ( (!validation.pName(pName))
                 || (!validation.pType(pType))

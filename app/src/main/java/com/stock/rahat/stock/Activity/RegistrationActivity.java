@@ -2,7 +2,6 @@ package com.stock.rahat.stock.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,7 @@ import com.stock.rahat.stock.R;
 import com.stock.rahat.stock.Repository.UserManager;
 import com.stock.rahat.stock.libraries.Validation;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends BaseActivity {
 
     EditText fullNameET;
     EditText userNameET;

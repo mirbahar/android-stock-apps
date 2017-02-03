@@ -12,6 +12,7 @@ public class Product implements Serializable {
         return this.id;
     }
     private int id;
+    private int userId;
     private String productName;
     private String productType;
     private String productQty;
@@ -25,8 +26,8 @@ public class Product implements Serializable {
         this.productQty = productQty;
         this.productBrand = productBrand;
     }
-    public Product(String productName, String productType, String productQty, String productBrand) {
-
+    public Product(String productName, String productType, String productQty, String productBrand,int userId) {
+        this.userId = userId;
         this.productName = productName;
         this.productType = productType;
         this.productQty = productQty;
@@ -55,5 +56,13 @@ public class Product implements Serializable {
 
     public String getProductBrand() {
         return productBrand;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

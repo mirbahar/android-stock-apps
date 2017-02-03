@@ -17,5 +17,10 @@
           app:showAsAction="never"
           android:orderInCategory="3"
         />
+         <item android:title="signUp"
+          android:id="@+id/signup_menu"
+          app:showAsAction="never"
+          android:orderInCategory="4"
+        />
 
 </menu>

@@ -1,6 +1,7 @@
 package com.stock.rahat.stock.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,11 +31,21 @@ public class ProductListActivity extends BaseActivity {
         productListView = (ListView) findViewById(R.id.productListLV);
         createProductBtn = (Button) findViewById(R.id.insertProductBtn);
         // get Shared preference data
-     //   SharedPreferences saveUserData = getSharedPreferences("UserInfo",MODE_PRIVATE );
+        SharedPreferences saveUserData = getSharedPreferences("UserInfo",MODE_PRIVATE );
+        int userId = saveUserData.getInt("userId",0);
 
         productManager = new ProductManager(this);
-        allProducts = productManager.getAllProducts();
-        productAdapter = new ProductAdapter(this,allProducts);
+        if(userId == 0) {
+            createProductBtn.setVisibility(View.INVISIBLE);
+            allProducts = productManager.getAllProducts();
+
+        }else {
+            createProductBtn.setVisibility(View.INVISIBLE);
+            allProducts = productManager.getProductsByUser(userId);
+
+            // do something
+        }
+        productAdapter = new ProductAdapter(this, allProducts);
         productListView.setAdapter(productAdapter);
 
         productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

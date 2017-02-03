@@ -48,6 +48,11 @@ public class BaseActivity extends AppCompatActivity {
                 Intent intent = new Intent(BaseActivity.this,LoginActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.signup_menu:
+
+                Intent adminLogin = new Intent(BaseActivity.this,RegistrationActivity.class);
+                startActivity(adminLogin);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

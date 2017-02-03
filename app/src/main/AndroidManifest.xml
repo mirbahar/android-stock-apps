@@ -10,12 +10,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.LoginActivity" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity android:name=".Activity.RegistrationActivity" />
         <activity android:name=".Activity.HomeActivity">
@@ -25,7 +19,11 @@
         <activity android:name=".Activity.UserUpdateActivity" />
         <activity android:name=".Activity.ProductListActivity">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.ProductInsertActivity" />
         <activity android:name=".Activity.ProductUpdateActivity" />

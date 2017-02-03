@@ -4,7 +4,7 @@
     <color name="colortext">#fcfcfd</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorBackgroundMain">#cb67716e</color>
-    <color name="colorInnerLayoutBackground">#e5e5f1</color>
+    <color name="colorInnerLayoutBackground">#cacaf2</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBtn">#f6f5f9</color>
 </resources>

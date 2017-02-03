@@ -74,8 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Toast.makeText(this,String.valueOf("Welcome To Our Apps"), Toast.LENGTH_SHORT).show();
 
-
-                Intent homePageActivity = new Intent(LoginActivity.this,HomeActivity.class);
+                Intent homePageActivity = new Intent(LoginActivity.this,ProductListActivity.class);
                 startActivity(homePageActivity);
 
             } else {

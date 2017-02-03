@@ -74,6 +74,30 @@ public class ProductManager {
         return allProducts;
     }
 
+    public ArrayList<Product> getProductsByUser(int userId){
+
+        ArrayList<Product>allProducts = new ArrayList<>();
+
+        String selectQuery="select * from "+DatabaseHelper.PRODUCT_TABLE+" where "+DatabaseHelper.PRODUCT_COLUMN_ID+" = "+userId;
+
+        sqLiteDatabase=databaseHelper.getReadableDatabase();
+        Cursor cursor=sqLiteDatabase.rawQuery(selectQuery,null);
+        if(cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_ID));
+                String pName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_NAME));
+                String pType = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_TYPE));
+                String pQty = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_QUANTITY));
+                String pBrand = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_BRAND));
+
+                Product product = new Product(id,pName,pType, pQty,pBrand);
+                allProducts.add(product);
+
+            }while (cursor.moveToNext());
+        }
+        return allProducts;
+    }
+
     public Product getSingleProductByID(int id){
 
         sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -85,9 +109,10 @@ public class ProductManager {
             String pType = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_TYPE));
             String pQty = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_QUANTITY));
             String pBrand = cursor.getString(cursor.getColumnIndex(DatabaseHelper.PRODUCT_COLUMN_BRAND));
+            int userId = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.USER_ID));
 
 
-            product = new Product(pName,pType,pQty,pBrand);
+            product = new Product(pName,pType,pQty,pBrand,userId);
         }
         return product;
     }

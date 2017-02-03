@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Stock_db";
-    private static final int DATABASE_VERSION =4;
+    private static final int DATABASE_VERSION =5;
 
     public static final String USER_TABLE="users";
     public static final String PRODUCT_TABLE="products";
@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static final String PRODUCT_COLUMN_ID = "productId";
+    public static final String USER_ID = "userId";
     public static final String PRODUCT_COLUMN_NAME = "name";
     public static final String PRODUCT_COLUMN_TYPE ="type";
     public static final String PRODUCT_COLUMN_QUANTITY ="quantity";
@@ -41,6 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_PRODUCT = "create table "+PRODUCT_TABLE+"("+
             PRODUCT_COLUMN_ID+" integer primary key autoincrement,"+
+            USER_ID+" integer ,"+
             PRODUCT_COLUMN_NAME + " text,"+
             PRODUCT_COLUMN_TYPE + " text,"+
             PRODUCT_COLUMN_QUANTITY + " text,"+
